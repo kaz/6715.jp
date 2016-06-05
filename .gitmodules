@@ -1,0 +1,3 @@
+[submodule "themes/jun"]
+	path = themes/jun
+	url = https://github.com/kazsw/hexo-theme-jun.git
