@@ -69,4 +69,4 @@ theme: jun
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/kazsw/kazsw.github.io.git
+  repo: ssh://kaz@narusejun.com:60022/home/kaz/blog.git
