@@ -70,3 +70,7 @@ theme: jun
 deploy:
   type: git
   repo: ssh://kaz@narusejun.com:60022/home/kaz/blog.git
+
+# Plugin Settings
+math:
+  engine: katex
