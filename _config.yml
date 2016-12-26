@@ -69,7 +69,7 @@ theme: jun
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: ssh://kaz@narusejun.com:60022/home/kaz/blog.git
+  repo: ssh://deploy@momoka-sakurai.com:20/~/narusejun.com
 
 # Plugin Settings
 math:
