@@ -65,12 +65,6 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: jun
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: ssh://deploy@narusejun.com/~/narusejun.com
-
 # Plugin Settings
 math:
   engine: katex
