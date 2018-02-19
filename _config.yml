@@ -4,15 +4,15 @@
 
 # Site
 title: 順ちゃん寝る
-subtitle: 成瀬順ちゃんがガンバるWeblog
-description: 成瀬順ちゃんがガンバるWeblog
+subtitle: 成瀬順がガンバるWeblog
+description: 成瀬順がガンバるWeblog
 author: NaruseJun
 language: ja
 timezone: Asia/Tokyo
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://narusejun.com
+url: https://narusejun.com
 root: /
 permalink: archives/:id/
 permalink_defaults:
