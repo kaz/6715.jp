@@ -1,0 +1,22 @@
+baseURL: /
+title: 成瀬順のメモ帳
+
+hasCJKLanguage: true
+defaultContentLanguage: ja
+
+googleAnalytics: UA-44127552-3
+
+theme: narusejun
+
+params:
+  customImage: https://www.gravatar.com/avatar/ae8d413b74cfb9235776b95a42728206?s=180
+
+  github: https://github.com/kaz
+  twitter: https://twitter.com/N4RU5E
+  facebook: https://www.facebook.com/sawada.kazuki
+
+  copyrightBy: NaruseJun
+  copyrightUrl: /
+
+  creditsText: " "
+  creditsUrl: /
