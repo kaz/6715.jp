@@ -1,18 +1,26 @@
 baseURL: /
-title: 成瀬順のメモ帳
-
-hasCJKLanguage: true
-defaultContentLanguage: ja
+title: NaruseJunのメモ帳
 
 googleAnalytics: UA-44127552-3
+defaultContentLanguage: ja
+hasCJKLanguage: true
+
+buildFuture: true
 
 theme: narusejun
+blackfriday:
+  extensions:
+    - hardLineBreak
 
 params:
-  customImage: https://www.gravatar.com/avatar/ae8d413b74cfb9235776b95a42728206?s=180
+  author: NaruseJun
+  subtitle: NaruseJunがいろいろ書いてる
+  description: NaruseJunのメモ帳
+
+  customImage: https://res.cloudinary.com/narusejun/image/twitter_name/sekai67.jpg
 
   github: https://github.com/kaz
-  twitter: https://twitter.com/N4RU5E
+  twitter: https://twitter.com/sekai67
   facebook: https://www.facebook.com/sawada.kazuki
 
   copyrightBy: NaruseJun
