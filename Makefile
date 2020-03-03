@@ -5,6 +5,7 @@ public:
 .PHONY: deploy
 deploy: public
 	git -C $< init
+	echo "narusejun.com" > $</CNAME
 	git -C $< config user.name $$(git log -n1 --pretty=format:%an)
 	git -C $< config user.email $$(git log -n1 --pretty=format:%ae)
 	git -C $< add -A
