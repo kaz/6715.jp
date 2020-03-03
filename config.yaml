@@ -8,9 +8,13 @@ hasCJKLanguage: true
 buildFuture: true
 
 theme: narusejun
-blackfriday:
-  extensions:
-    - hardLineBreak
+
+markup:
+  goldmark:
+    renderer:
+      hardWraps: true
+  highlight:
+    codeFences: false
 
 params:
   author: NaruseJun
