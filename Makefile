@@ -2,8 +2,8 @@
 serve: submodule
 	docker run --rm -v $(PWD):/src -p 1313:1313 klakegg/hugo serve
 
-.PHONY: build
-build: submodule
+.PHONY: public
+public: submodule
 	docker run --rm -v $(PWD):/src -v $(PWD)/public:/target klakegg/hugo
 
 .PHONY: submodule
@@ -11,7 +11,7 @@ submodule:
 	git submodule update --init
 
 .PHONY: deploy
-deploy: build
+deploy: public
 	git -C $< init
 	echo "narusejun.com" > $</CNAME
 	git -C $< config user.name $$(git log -n1 --pretty=format:%an)
