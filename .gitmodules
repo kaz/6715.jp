@@ -1,3 +1,3 @@
-[submodule "themes/narusejun"]
-	path = themes/narusejun
-	url = https://github.com/kaz/hugo-theme-narusejun.git
+[submodule "nextjs-blog-scaffold"]
+	path = nextjs-blog-scaffold
+	url = https://github.com/kaz/nextjs-blog-scaffold.git
