@@ -35,6 +35,7 @@ build() {
 
 deploy() {
 	rm -rf "$OUTPUT_DIR/.git"
+	touch $OUTPUT_DIR/.nojekyll
 	printf $BLOG_HOST > $OUTPUT_DIR/CNAME
 	_git init
 	_git add -A
