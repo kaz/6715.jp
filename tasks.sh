@@ -34,13 +34,14 @@ build() {
 }
 
 deploy() {
+	rm -rf "$OUTPUT_DIR/.git"
 	printf $BLOG_HOST > $OUTPUT_DIR/CNAME
 	_git init
 	_git add -A
 	_git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 	_git config user.name "$GITHUB_ACTOR"
 	_git commit -m "built from $GIT_COMMIT_SHA"
-	_git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
+	_git push -f $GIT_REMOTE HEAD:$GIT_BRANCH
 }
 
 source env.sh
