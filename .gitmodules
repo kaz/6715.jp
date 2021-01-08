@@ -1,3 +1,3 @@
 [submodule "nextjs-blog-scaffold"]
 	path = nextjs-blog-scaffold
-	url = https://github.com/kaz/nextjs-blog-scaffold.git
+	url = git@github.com:kaz/nextjs-blog-scaffold.git
