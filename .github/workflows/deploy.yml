@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0 # ensure updated date of article is awared correctly
           submodules: recursive
       - uses: actions/cache@v2
         with:
