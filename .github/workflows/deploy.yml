@@ -19,9 +19,9 @@ jobs:
           submodules: recursive
       - uses: actions/cache@v2
         with:
-          key: ${{ hashFiles('**/package-lock.json') }}
+          key: cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
           path: |
-            ${{ github.workspace }}/nextjs-blog-scaffold/.next
-            ${{ github.workspace }}/nextjs-blog-scaffold/node_modules
+            **/.next/cache
+            **/node_modules
       - run: ./tasks.sh build
       - run: ./tasks.sh deploy
