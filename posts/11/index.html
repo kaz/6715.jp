@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="ja"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XKSQ648BQ2"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XKSQ648BQ2')</script><meta charSet="utf-8"/><meta name="format-detection" content="telephone=no"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><meta name="author" content="sekai"/><meta name="generator" content="https://github.com/kaz/nextjs-blog-scaffold"/><meta property="og:url" content="https://6715.jp/posts/11/"/><meta property="og:site_name" content="6715.jp"/><link rel="icon" href="https://res.cloudinary.com/narusejun/image/twitter_name/h_128/sekai67.jpg"/><link rel="canonical" href="https://6715.jp/posts/11/"/><title>神エディタSublimeText3 | 6715.jp</title><meta name="description" content="はい。 OSXでマトモに使えるエディタが他にないですよね。 CotEditor 痒いところに手が届かない mi なんか微妙 Atom, VSCode, Brackets 重い(でもElectronは…"/><meta name="twitter:card" content="summary"/><meta property="og:title" content="神エディタSublimeText3 | 6715.jp"/><meta property="og:type" content="article"/><meta property="og:image" content="https://res.cloudinary.com/narusejun/image/twitter_name/h_128/sekai67.jpg"/><meta property="og:description" content="はい。 OSXでマトモに使えるエディタが他にないですよね。 CotEditor 痒いところに手が届かない mi なんか微妙 Atom, VSCode, Brackets 重い(でもElectronは…"/><meta property="article:published_time" content="2016-09-16T00:00:00.000Z"/><meta property="article:author" content="sekai"/><meta property="article:tag" content="SublimeText"/><meta property="article:tag" content="エディタ"/><meta name="next-head-count" content="20"/><link rel="preload" href="/_next/static/css/61bb26da18d2752efee9.css" as="style"/><link rel="stylesheet" href="/_next/static/css/61bb26da18d2752efee9.css" data-n-g=""/><link rel="preload" href="/_next/static/css/ad30b8ddc18c06e71d13.css" as="style"/><link rel="stylesheet" href="/_next/static/css/ad30b8ddc18c06e71d13.css" data-n-p=""/><noscript data-n-css=""></noscript></head><body><div id="__next"><header class="Header_header__1mCED"><h1><a href="/">6715.jp</a></h1></header><main class="posts_post__IJEgW"><section class="posts_meta__26MyQ"><small>2016-09-16</small><h1>神エディタSublimeText3</h1><div><div><img src="https://res.cloudinary.com/narusejun/image/twitter_name/h_128/sekai67.jpg" alt="sekai"/><a href="#profile">sekai</a></div><div><svg aria-hidden="true" role="img" class="octicon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg><a href="/tags/SublimeText/">SublimeText</a><a href="/tags/%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF/">エディタ</a></div></div></section><div class="SocialShare_social__3xEln"><a rel="noopener noreferrer" target="_blank" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2F6715.jp%2Fposts%2F11%2F"><span title="LINE" style="background-color:#00C300"><svg viewBox="0 0 24 24"><path fill="white" d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="http://twitter.com/share?url=https%3A%2F%2F6715.jp%2Fposts%2F11%2F&amp;text=%E7%A5%9E%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BFSublimeText3%20%7C%206715.jp"><span title="Twitter" style="background-color:#1DA1F2"><svg viewBox="0 0 24 24"><path fill="white" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F6715.jp%2Fposts%2F11%2F"><span title="Facebook" style="background-color:#1877F2"><svg viewBox="0 0 24 24"><path fill="white" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="http://b.hatena.ne.jp/add?url=https%3A%2F%2F6715.jp%2Fposts%2F11%2F"><span title="Hatena Bookmark" style="background-color:#00A4DE"><svg viewBox="0 0 24 24"><path fill="white" d="M20.47 0C22.42 0 24 1.58 24 3.53v16.94c0 1.95-1.58 3.53-3.53 3.53H3.53C1.58 24 0 22.42 0 20.47V3.53C0 1.58 1.58 0 3.53 0h16.94zm-3.705 14.47c-.78 0-1.41.63-1.41 1.41s.63 1.414 1.41 1.414 1.41-.645 1.41-1.425-.63-1.41-1.41-1.41zM8.61 17.247c1.2 0 2.056-.042 2.58-.12.526-.084.976-.222 1.32-.412.45-.232.78-.564 1.02-.99s.36-.915.36-1.48c0-.78-.21-1.403-.63-1.87-.42-.48-.99-.734-1.74-.794.66-.18 1.156-.45 1.456-.81.315-.344.465-.824.465-1.424 0-.48-.103-.885-.3-1.26-.21-.36-.493-.645-.883-.87-.345-.195-.735-.315-1.215-.405-.464-.074-1.29-.12-2.474-.12H5.654v10.486H8.61zm.736-4.185c.705 0 1.185.088 1.44.262.27.18.39.495.39.93 0 .405-.135.69-.42.855-.27.18-.765.254-1.44.254H8.31v-2.297h1.05zm8.656.706v-7.06h-2.46v7.06H18zM8.925 9.08c.71 0 1.185.08 1.432.24.245.16.367.435.367.83 0 .38-.13.646-.39.804-.265.154-.747.232-1.452.232h-.57V9.08h.615z"></path></svg></span></a></div><article class="posts_content__YuXhG"><p>はい。<p>OSXでマトモに使えるエディタが他にないですよね。<ul><li>CotEditor<ul><li>痒いところに手が届かない</ul><li>mi<ul><li>なんか微妙</ul><li>Atom, VSCode, Brackets<ul><li>重い(でもElectronは神だよ)</ul><li>その他無名エディタ<ul><li>論外</ul></ul><h1>Sublime Text</h1><p>買って使おう。<h2>Package Control</h2><aside><a href=https://packagecontrol.io/installation rel="noopener noreferrer"target=_blank style=background-image:url(https://packagecontrol.io/img/logo.svg)><div><strong>Installation - Package Control</strong><cite>packagecontrol.io</cite><q cite=https://packagecontrol.io/installation></q></div></a></aside><p>必須 取り敢えず入れよう<h2>IMESupport</h2><aside><a href=https://packagecontrol.io/packages/IMESupport rel="noopener noreferrer"target=_blank style=background-image:url(https://packagecontrol.io/img/logo.svg)><div><strong>IMESupport - Packages - Package Control</strong><cite>packagecontrol.io</cite><q cite=https://packagecontrol.io/packages/IMESupport></q></div></a></aside><blockquote><p>IMESupportは、Windows の Sublime Text で IME を利用した文字入力をサポートするパッケージです。 IME でインライン変換の入力文字が正しい位置に表示されない問題をある程度解決できます。</blockquote><p>Winでは入れないとお話にならない。<h2>OSX + GoogleJapaneseInput の問題</h2><p>Google日本語入力使ってると起こるのかな？？ （ことえりがクソなので試してすら無いけど）<p>この問題が唯一にして最大の欠点。。。<h3>検索パネルでEnterが効かない問題</h3><p>次検索をsuper+enterで行うようにして回避した。<pre><code class="hljs language-js"><span class=hljs-comment>/* 640行目付近 */</span>
+
+<span class=hljs-comment>// Find panel key bindings</span>
+{ <span class=hljs-string>"keys"</span>: <span class=hljs-comment>/* FIX: */</span> [<span class=hljs-string>"super+enter"</span>], <span class=hljs-string>"command"</span>: <span class=hljs-string>"find_next"</span>, <span class=hljs-string>"context"</span>:
+	[{<span class=hljs-string>"key"</span>: <span class=hljs-string>"panel"</span>, <span class=hljs-string>"operand"</span>: <span class=hljs-string>"find"</span>}, {<span class=hljs-string>"key"</span>: <span class=hljs-string>"panel_has_focus"</span>}]
+},
+
+...
+
+<span class=hljs-comment>// Replace panel key bindings</span>
+{ <span class=hljs-string>"keys"</span>: <span class=hljs-comment>/* FIX: */</span> [<span class=hljs-string>"super+enter"</span>], <span class=hljs-string>"command"</span>: <span class=hljs-string>"find_next"</span>, <span class=hljs-string>"context"</span>:
+	[{<span class=hljs-string>"key"</span>: <span class=hljs-string>"panel"</span>, <span class=hljs-string>"operand"</span>: <span class=hljs-string>"replace"</span>}, {<span class=hljs-string>"key"</span>: <span class=hljs-string>"panel_has_focus"</span>}]
+},
+
+...
+
+<span class=hljs-comment>// Incremental find panel key bindings</span>
+{ <span class=hljs-string>"keys"</span>: <span class=hljs-comment>/* FIX: */</span> [<span class=hljs-string>"super+enter"</span>], <span class=hljs-string>"command"</span>: <span class=hljs-string>"hide_panel"</span>, <span class=hljs-string>"context"</span>:
+	[{<span class=hljs-string>"key"</span>: <span class=hljs-string>"panel"</span>, <span class=hljs-string>"operand"</span>: <span class=hljs-string>"incremental_find"</span>}, {<span class=hljs-string>"key"</span>: <span class=hljs-string>"panel_has_focus"</span>}]
+},
+</code></pre><h3>ファンクションキーでの変換ができない問題</h3><p>デフォルトで割り当てられている機能を無効化する<pre><code class="hljs language-js"><span class=hljs-comment>/* 240行目付近 */</span>
+
+<span class=hljs-comment>/* FIX:
+{ "keys": ["f7"], "command": "build" },
+*/</span>
+</code></pre><h3>tabで変換候補が選択できない問題</h3><p>tabにデフォルトで割り当てられている機能を無効化する<pre><code class="hljs language-js"><span class=hljs-comment>/* 100行目付近 */</span>
+
+<span class=hljs-comment>/* FIX:
+{ "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": true} },
+{ "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false},
+	"context":
+	[
+		{ "key": "setting.tab_completion", "operator": "equal", "operand": true },
+		{ "key": "preceding_text", "operator": "not_regex_match", "operand": ".*\\b[0-9]+$", "match_all": true },
+	]
+},
+*/</span>
+</code></pre><p>参考 <a href=http://qiita.com/akippiko/items/1382faa29833379621f6 rel="noopener noreferrer"target=_blank>http://qiita.com/akippiko/items/1382faa29833379621f6</a><h2>テーマ</h2><h3>Piatto</h3><aside><a href=https://packagecontrol.io/packages/Theme%20-%20Piatto rel="noopener noreferrer"target=_blank style=background-image:url(https://packagecontrol.io/readmes/img/bda68627c763391dcd7746d35bd14e548769c5bd.png)><div><strong>Theme - Piatto - Packages - Package Control</strong><cite>packagecontrol.io</cite><q cite=https://packagecontrol.io/packages/Theme%20-%20Piatto></q></div></a></aside><p>ver2.0.0以降からグレー基調になってしまった。（微妙） 使うならver1系が良い。白基調できれい。 合わせるカラースキームはDawnがオススメ。<h3>Boxy Theme</h3><aside><a href=https://packagecontrol.io/packages/Boxy%20Theme rel="noopener noreferrer"target=_blank style=background-image:url(https://packagecontrol.io/img/logo.svg)><div><strong>Boxy Theme - Packages - Package Control</strong><cite>packagecontrol.io</cite><q cite=https://packagecontrol.io/packages/Boxy%20Theme></q></div></a></aside><p>神<p>Boxy Yesterdayがカッコいいです。<p><img alt src=1.png><p>ボクが使ってる設定<pre><code class="hljs language-js">{
+	<span class=hljs-string>"color_scheme"</span>: <span class=hljs-string>"Packages/Boxy Theme/schemes/Boxy Yesterday.tmTheme"</span>,
+	<span class=hljs-string>"font_size"</span>: <span class=hljs-number>14</span>,
+	<span class=hljs-string>"highlight_line"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"line_padding_bottom"</span>: <span class=hljs-number>2</span>,
+	<span class=hljs-string>"line_padding_top"</span>: <span class=hljs-number>2</span>,
+	<span class=hljs-string>"shift_tab_unindent"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme"</span>: <span class=hljs-string>"Boxy Yesterday.sublime-theme"</span>,
+	<span class=hljs-string>"theme_accent_green"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_autocomplete_item_selected_colored"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_bar"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_bar_colored"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_scrollbar_rounded"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_sidebar_disclosure"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_sidebar_indent_top_level_disabled"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_statusbar_colored"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"theme_statusbar_size_xs"</span>: <span class=hljs-literal>true</span>,
+	<span class=hljs-string>"trim_automatic_white_space"</span>: <span class=hljs-literal>false</span>,
+	<span class=hljs-string>"word_wrap"</span>: <span class=hljs-literal>false</span>
+}
+</code></pre><h2>キーマップ</h2><h3>OSX</h3><p>一行切り取り/コピーがけっこう暴発するので無効化したり、 コード整形を出来るようにしたり、置換パネルをWinライクに出せるようにしたり。<pre><code class="hljs language-js">[{
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"ctrl+tab"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"reindent"</span>,
+	<span class=hljs-string>"context"</span>: [{
+		<span class=hljs-string>"key"</span>: <span class=hljs-string>"text"</span>,
+		<span class=hljs-string>"operator"</span>: <span class=hljs-string>"regex_contains"</span>,
+		<span class=hljs-string>"operand"</span>: <span class=hljs-string>"\n"</span>
+	}]
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"super+h"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"show_panel"</span>,
+	<span class=hljs-string>"args"</span>: {
+		<span class=hljs-string>"panel"</span>: <span class=hljs-string>"replace"</span>,
+		<span class=hljs-string>"reverse"</span>: <span class=hljs-literal>false</span>
+	}
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"super+c"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"noop"</span>
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"super+c"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"copy"</span>,
+	<span class=hljs-string>"context"</span>: [{
+		<span class=hljs-string>"key"</span>: <span class=hljs-string>"selection_empty"</span>,
+		<span class=hljs-string>"operator"</span>: <span class=hljs-string>"equal"</span>,
+		<span class=hljs-string>"operand"</span>: <span class=hljs-literal>false</span>
+	}]
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"super+x"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"noop"</span>
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"super+x"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"cut"</span>,
+	<span class=hljs-string>"context"</span>: [{
+		<span class=hljs-string>"key"</span>: <span class=hljs-string>"selection_empty"</span>,
+		<span class=hljs-string>"operator"</span>: <span class=hljs-string>"equal"</span>,
+		<span class=hljs-string>"operand"</span>: <span class=hljs-literal>false</span>
+	}]
+}]
+</code></pre><h2>Win</h2><pre><code class="hljs language-js">[{
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"ctrl+tab"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"reindent"</span>,
+	<span class=hljs-string>"context"</span>: [{
+		<span class=hljs-string>"key"</span>: <span class=hljs-string>"text"</span>,
+		<span class=hljs-string>"operator"</span>: <span class=hljs-string>"regex_contains"</span>,
+		<span class=hljs-string>"operand"</span>: <span class=hljs-string>"\n"</span>
+	}]
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"ctrl+c"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"noop"</span>
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"ctrl+c"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"copy"</span>,
+	<span class=hljs-string>"context"</span>: [{
+		<span class=hljs-string>"key"</span>: <span class=hljs-string>"selection_empty"</span>,
+		<span class=hljs-string>"operator"</span>: <span class=hljs-string>"equal"</span>,
+		<span class=hljs-string>"operand"</span>: <span class=hljs-literal>false</span>
+	}]
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"ctrl+x"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"noop"</span>
+}, {
+	<span class=hljs-string>"keys"</span>: [<span class=hljs-string>"ctrl+x"</span>],
+	<span class=hljs-string>"command"</span>: <span class=hljs-string>"cut"</span>,
+	<span class=hljs-string>"context"</span>: [{
+		<span class=hljs-string>"key"</span>: <span class=hljs-string>"selection_empty"</span>,
+		<span class=hljs-string>"operator"</span>: <span class=hljs-string>"equal"</span>,
+		<span class=hljs-string>"operand"</span>: <span class=hljs-literal>false</span>
+	}]
+}]
+</code></pre></article><div class="SocialShare_social__3xEln"><a rel="noopener noreferrer" target="_blank" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2F6715.jp%2Fposts%2F11%2F"><span title="LINE" style="background-color:#00C300"><svg viewBox="0 0 24 24"><path fill="white" d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="http://twitter.com/share?url=https%3A%2F%2F6715.jp%2Fposts%2F11%2F&amp;text=%E7%A5%9E%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BFSublimeText3%20%7C%206715.jp"><span title="Twitter" style="background-color:#1DA1F2"><svg viewBox="0 0 24 24"><path fill="white" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F6715.jp%2Fposts%2F11%2F"><span title="Facebook" style="background-color:#1877F2"><svg viewBox="0 0 24 24"><path fill="white" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="http://b.hatena.ne.jp/add?url=https%3A%2F%2F6715.jp%2Fposts%2F11%2F"><span title="Hatena Bookmark" style="background-color:#00A4DE"><svg viewBox="0 0 24 24"><path fill="white" d="M20.47 0C22.42 0 24 1.58 24 3.53v16.94c0 1.95-1.58 3.53-3.53 3.53H3.53C1.58 24 0 22.42 0 20.47V3.53C0 1.58 1.58 0 3.53 0h16.94zm-3.705 14.47c-.78 0-1.41.63-1.41 1.41s.63 1.414 1.41 1.414 1.41-.645 1.41-1.425-.63-1.41-1.41-1.41zM8.61 17.247c1.2 0 2.056-.042 2.58-.12.526-.084.976-.222 1.32-.412.45-.232.78-.564 1.02-.99s.36-.915.36-1.48c0-.78-.21-1.403-.63-1.87-.42-.48-.99-.734-1.74-.794.66-.18 1.156-.45 1.456-.81.315-.344.465-.824.465-1.424 0-.48-.103-.885-.3-1.26-.21-.36-.493-.645-.883-.87-.345-.195-.735-.315-1.215-.405-.464-.074-1.29-.12-2.474-.12H5.654v10.486H8.61zm.736-4.185c.705 0 1.185.088 1.44.262.27.18.39.495.39.93 0 .405-.135.69-.42.855-.27.18-.765.254-1.44.254H8.31v-2.297h1.05zm8.656.706v-7.06h-2.46v7.06H18zM8.925 9.08c.71 0 1.185.08 1.432.24.245.16.367.435.367.83 0 .38-.13.646-.39.804-.265.154-.747.232-1.452.232h-.57V9.08h.615z"></path></svg></span></a></div></main><footer class="Footer_footer__22y9A"><div id="profile" class="Footer_profile__39Joc"><img src="https://res.cloudinary.com/narusejun/image/twitter_name/h_128/sekai67.jpg" alt="sekai"/><div><small>Author</small><strong>sekai<a rel="noopener noreferrer" target="_blank" href="https://github.com/kaz"><span title="GitHub" style="background-color:initial"><svg viewBox="0 0 24 24"><path fill="#181717" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="https://twitter.com/sekai67"><span title="Twitter" style="background-color:initial"><svg viewBox="0 0 24 24"><path fill="#1DA1F2" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg></span></a><a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/sawada.kazuki"><span title="Facebook" style="background-color:initial"><svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></span></a></strong><p>インフラとDXが好き</p></div></div><div class="Footer_copyright__3QtRW">© <!-- -->2016 sekai</div></footer></div></body></html>
