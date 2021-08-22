@@ -19,7 +19,9 @@ _link_dir() {
 _init() {
 	_link_dir $OUTPUT_DIR
 	_link_dir public
-	_npm install
+	if [ ! -e "$ENGINE_DIR/node_modules" ]; then
+		_npm ci
+	fi
 }
 
 dev() {
