@@ -1,0 +1,37 @@
+---
+import { authorImage, authorName, siteTitle } from "../config";
+import "../styles/global.scss";
+
+export interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	pageType?: string;
+}
+
+const { title, description, image, pageType = "website" } = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
+<meta name="author" content={authorName} />
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="icon" href={new URL(authorImage, Astro.url)} />
+<link rel="canonical" href={Astro.url} />
+
+<meta property="og:type" content={pageType} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content={siteTitle} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+
+<meta property="twitter:card" content={image ? "summary_large_image" : "summary"} />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}

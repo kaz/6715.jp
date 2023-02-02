@@ -1,0 +1,26 @@
+{
+	"name": "6715.jp",
+	"private": true,
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@fontsource/exo-2": "^4.5.9",
+		"katex": "^0.16.2",
+		"simple-icons": "^7.10.0"
+	},
+	"devDependencies": {
+		"@astrojs/mdx": "^0.11.1",
+		"@astrojs/sitemap": "^1.0.0",
+		"astro": "^1.1.5",
+		"astro-compress": "^1.0.6",
+		"rehype-external-links": "^2.0.1",
+		"rehype-katex": "^6.0.2",
+		"remark-math": "^5.1.1",
+		"sass": "^1.54.8"
+	}
+}

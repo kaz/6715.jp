@@ -1,0 +1,21 @@
+---
+export interface Props {
+	hex: string;
+	path: string;
+	title: string;
+	inverted?: boolean;
+}
+
+const { hex, path, title, inverted = false } = Astro.props;
+---
+
+<span
+	title={title}
+	style={{
+		backgroundColor: inverted ? `#${hex}` : "initial",
+	}}
+>
+	<svg viewBox="0 0 24 24">
+		<path fill={`#${inverted ? "fff" : hex}`} d={path}></path>
+	</svg>
+</span>

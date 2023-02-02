@@ -1,0 +1,76 @@
+---
+import {
+	authorBio,
+	authorFacebookUrl,
+	authorGithubUrl,
+	authorImage,
+	authorLinkedinUrl,
+	authorName,
+	authorTwitterUrl,
+	copyright,
+} from "../config";
+import FacebookIcon from "./icons/FacebookIcon.astro";
+import GithubIcon from "./icons/GithubIcon.astro";
+import LinkedinIcon from "./icons/LinkedinIcon.astro";
+import TwitterIcon from "./icons/TwitterIcon.astro";
+---
+
+<style lang="scss">
+	footer {
+		margin: 4rem 0;
+	}
+	.author {
+		display: flex;
+		gap: 1.5rem;
+
+		> img {
+			width: 4rem;
+			height: 4rem;
+
+			border: 0.2rem solid ghostwhite;
+			border-radius: 100%;
+		}
+	}
+	.profile {
+		display: flex;
+		flex-direction: column;
+
+		> small {
+			text-transform: uppercase;
+			color: dimgray;
+			font-size: 0.7rem;
+		}
+		> strong {
+			font-weight: 400;
+			font-size: 1.4rem;
+		}
+		.linkIcon {
+			display: inline-block;
+			margin-left: 0.3rem;
+			width: 1.2rem;
+			height: 1.2rem;
+		}
+	}
+	.copyright {
+		text-align: right;
+		color: dimgray;
+		font-size: 0.8rem;
+	}
+</style>
+<footer>
+	<div class="author">
+		<img src={new URL(authorImage, Astro.url).toString()} alt={authorName} />
+		<div class="profile">
+			<small>Author</small>
+			<strong>
+				{authorName}
+				<a class="linkIcon" target="_blank" href={authorTwitterUrl}><TwitterIcon /></a>
+				<a class="linkIcon" target="_blank" href={authorGithubUrl}><GithubIcon /></a>
+				<a class="linkIcon" target="_blank" href={authorFacebookUrl}><FacebookIcon /></a>
+				<a class="linkIcon" target="_blank" href={authorLinkedinUrl}><LinkedinIcon /></a>
+			</strong>
+			<p>{authorBio}</p>
+		</div>
+	</div>
+	<div class="copyright">&copy; {copyright}</div>
+</footer>

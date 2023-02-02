@@ -1,0 +1,27 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Posts from "../components/Posts.astro";
+import { siteDescription } from "../config";
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<BaseHead title="" description={siteDescription} />
+		<style lang="scss">
+			main {
+				max-width: 50rem;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<Header />
+			<Posts />
+			<Footer />
+		</main>
+	</body>
+</html>
