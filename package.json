@@ -1,26 +1,53 @@
 {
-	"name": "6715.jp",
-	"private": true,
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@fontsource/exo-2": "^4.5.11",
-		"katex": "^0.16.4",
-		"simple-icons": "^8.4.0"
-	},
-	"devDependencies": {
-		"@astrojs/mdx": "^0.16.0",
-		"@astrojs/sitemap": "^1.0.1",
-		"astro": "^2.0.5",
-		"astro-compress": "^1.1.29",
-		"rehype-external-links": "^2.0.1",
-		"rehype-katex": "^6.0.2",
-		"remark-math": "^5.1.1",
-		"sass": "^1.58.0"
-	}
+  "name": "6715.jp",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vp build && bun scripts/finalize.ts",
+    "preview": "vp preview",
+    "check": "vp check",
+    "test": "vp test run",
+    "typecheck": "bun scripts/prepare.ts && tsc --noEmit",
+    "format": "vp fmt",
+    "validate": "bun run typecheck && vp test run && bun run build && playwright test",
+    "test:e2e": "playwright test",
+    "content:refresh-embeds": "bun scripts/refresh-embeds.ts"
+  },
+  "dependencies": {
+    "hono": "^4.11.9",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@hono/node-server": "^2.1.5",
+    "@playwright/test": "^1.61.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/katex": "^0.16.7",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@void/md": "1.1.12",
+    "@void/react": "1.1.12",
+    "cheerio": "^1.2.0",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.1",
+    "katex": "^0.16.22",
+    "oxc-transform-react": "^0.149.0",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^7.0.2",
+    "unified": "^11.0.5",
+    "vite": "npm:@voidzero-dev/vite-plus-core@^1.2.0",
+    "vite-plus": "^1.2.0",
+    "void": "1.1.12"
+  },
+  "engines": {
+    "node": ">=24.21.0"
+  },
+  "packageManager": "bun@1.4.3"
 }
