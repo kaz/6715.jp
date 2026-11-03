@@ -152,17 +152,40 @@
   }
 
   .social-share {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5em;
     margin: 2em 0;
   }
-  .social-share a {
-    margin-left: 2px;
+  /* The island wrapper must not take up a flex slot while the button is hidden. */
+  .social-share > [data-island] {
+    display: contents;
   }
-  .social-share a span {
-    display: inline-block;
-    height: 32px;
-    width: 32px;
-    padding: 8px;
+  .social-share a,
+  .social-share button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    color: #3c4043;
+    background-color: #f1f3f4;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .social-share a:hover,
+  .social-share button:hover {
+    background-color: #e2e5e7;
+  }
+  .social-share span {
+    display: flex;
+  }
+  .social-share svg {
+    width: 18px;
+    height: 18px;
   }
 
   .not-found {
