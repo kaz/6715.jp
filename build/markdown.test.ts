@@ -108,6 +108,7 @@ describe('Markdown compatibility around @void/md', () => {
     expect(html).toContain('<aside><a href="/posts/1/"');
     expect(html).toContain('<strong>First &lt;post&gt;</strong>');
     expect(html).toContain('<q cite="https://6715.jp/posts/1/">A &amp; B</q>');
+    expect(load(html)('aside a > img').attr('src')).toBe('https://6715.jp/posts/1/1.png');
     expect(html).toContain(
       '<p>Inline <a href="https://example.com/" target="_blank" rel="noopener noreferrer">',
     );
