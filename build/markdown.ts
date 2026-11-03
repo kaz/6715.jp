@@ -1,6 +1,9 @@
 import { load } from 'cheerio';
+import { createHash } from 'node:crypto';
 import matter from 'gray-matter';
 import katex from 'katex';
+import highlight from 'highlight.js';
+import codeLanguages from '../data/code-languages.json';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
@@ -12,12 +15,14 @@ export type LinkMetadata = {
   description?: string;
   image?: string;
   url?: string;
+  articles?: Record<string, LinkMetadata>;
 };
 
 export type MarkdownOptions = {
   siteUrl?: string;
   metadata?: Record<string, LinkMetadata>;
   embeds?: Record<string, string>;
+  slug?: string;
 };
 
 type Node = {
@@ -32,9 +37,9 @@ type Node = {
 type Replacement = { start: number; end: number; value: string };
 
 /**
- * Add the two legacy extensions missing from @void/md before it renders the
+ * Add the legacy extensions missing from @void/md before it renders the
  * Markdown. Parsing is used only for source positions: @void/md remains the
- * Markdown renderer, including tables, HTML, footnotes, and highlighting.
+ * Markdown renderer, including tables, HTML, and footnotes.
  */
 export function transformMarkdown(
   source: string,
@@ -54,20 +59,21 @@ export function transformMarkdown(
     const end = node.position?.end.offset;
     if ((node.type === 'math' || node.type === 'inlineMath') && start != null && end != null) {
       const display = node.type === 'math';
-      const html = katex
-        .renderToString(node.value ?? '', {
-          displayMode: display,
-          throwOnError: true,
-          strict: 'ignore',
-          trust: false,
-        })
-        .replace(/\r?\n/g, '&#10;');
+      const html = katex.renderToString(node.value ?? '', {
+        displayMode: display,
+        throwOnError: true,
+        strict: 'ignore',
+        trust: false,
+      });
+      // Inline HTML still passes through Markdown's emphasis/attribute parser.
+      // Keep TeX (especially subscripts and braces) opaque until HTML emission.
+      const encoded = Buffer.from(html).toString('base64');
       replacements.push({
         start,
         end,
         value: display
-          ? `<div class="math math-display">${html}</div>`
-          : `<span class="math math-inline">${html}</span>`,
+          ? `<div class="math math-display" data-blog-math="${encoded}"></div>`
+          : `<span class="math math-inline" data-blog-math="${encoded}"></span>`,
       });
       return;
     }
@@ -91,6 +97,17 @@ export function transformMarkdown(
   }
 
   visit(tree);
+  // Match the previous renderer's quote/list boundaries instead of absorbing
+  // unmarked lines as CommonMark lazy continuations.
+  for (const match of body.matchAll(/^((?:>|[-+*] )[^\n]*\n)(?=[^>\s*+-])/gm)) {
+    const end = match.index! + match[0].length;
+    const inCode = (node: Node): boolean =>
+      (node.type === 'code' &&
+        (node.position?.start.offset ?? Infinity) <= end &&
+        (node.position?.end.offset ?? -1) >= end) ||
+      (node.children ?? []).some(inCode);
+    if (!inCode(tree)) replacements.push({ start: end, end, value: '\n' });
+  }
   let markdown = body;
   for (const replacement of replacements.sort((a, b) => b.start - a.start)) {
     markdown =
@@ -113,6 +130,15 @@ export function transformHtml(
   const $ = load(html, { xml: false }, false);
   const siteUrl = new URL(options.siteUrl ?? 'https://6715.jp/');
 
+  $('[data-blog-math]').each((_, element) => {
+    const item = $(element);
+    item.html(Buffer.from(item.attr('data-blog-math')!, 'base64').toString());
+    item.removeAttr('data-blog-math');
+  });
+  // Eager images keep their original dimensions before scrolling and avoid
+  // layout jumps in articles containing screenshots.
+  $('img').removeAttr('loading');
+
   // These are documentation UI added by @void/md, absent from the old blog.
   $('a.header-anchor').each((_, element) => {
     const following = element.next;
@@ -131,11 +157,29 @@ export function transformHtml(
     if (!pre.length) return;
     const language = wrapper.attr('class')?.match(/(?:^|\s)language-([^\s]*)/)?.[1];
     if (language) pre.children('code').addClass(`language-${language}`);
-    // Preserve Shiki token colors while letting the blog supply the background.
-    const style = pre.attr('style')?.replace(/(?:^|;)\s*background-color\s*:[^;]*/g, '');
-    if (style) pre.attr('style', style);
-    else pre.removeAttr('style');
     wrapper.replaceWith(pre);
+  });
+  $('pre code').each((_, element) => {
+    const code = $(element);
+    const text = code.text();
+    const declared = code.attr('class')?.match(/(?:^|\s)language-([^\s]+)/)?.[1];
+    // Retain the old detector's guesses for existing unlabelled snippets.
+    // New snippets still use automatic language detection.
+    const cached = (codeLanguages as Record<string, string>)[
+      createHash('sha256').update(text).digest('hex')
+    ];
+    const language = declared ?? cached;
+    const result =
+      language && highlight.getLanguage(language)
+        ? highlight.highlight(language, text, true)
+        : highlight.highlightAuto(text);
+    code
+      .html(result.value)
+      .attr(
+        'class',
+        `hljs${(language ?? result.language) ? ` language-${language ?? result.language}` : ''}`,
+      );
+    code.parent('pre').removeAttr('class').removeAttr('style').removeAttr('tabindex');
   });
 
   const footnotes = options.footnotes ?? [];
@@ -151,11 +195,24 @@ export function transformHtml(
     if (id) item.attr('id', footnoteAnchor(id));
     if (href) item.attr('href', footnoteAnchor(href));
   });
-  $('sup.footnote-ref a').each((_, element) => {
+  $('sup.footnote-ref a').each((index, element) => {
     const anchor = $(element);
-    anchor.addClass('footnote-ref').text(anchor.text().replace(/^\[(\d+)\]$/, '$1'));
+    anchor.addClass('footnote-ref').text(String(index + 1));
   });
   $('a.footnote-backref').text('↩');
+  $('.footnotes > ol > li').each((_, element) => {
+    const item = $(element);
+    item.find('a.footnote-backref').slice(1).remove();
+    item.children('p').each((_, paragraph) => {
+      $(paragraph)
+        .find('a.footnote-backref')
+        .each((_, anchor) => {
+          const previous = anchor.prev;
+          if (previous?.type === 'text') previous.data = previous.data.trimEnd();
+        });
+      $(paragraph).replaceWith($(paragraph).contents());
+    });
+  });
   $('section.footnotes').each((_, element) => {
     const section = $(element);
     const separator = section.prev('hr.footnotes-sep');
@@ -187,12 +244,22 @@ export function transformHtml(
     }
     // Snapshot the same oEmbed-first behavior as the old renderer, without
     // introducing a network dependency into ordinary static builds.
-    const embed = options.embeds?.[href] ?? options.embeds?.[url.href];
+    const statusId =
+      url.hostname === 'twitter.com' ? url.pathname.match(/\/status\/(\d+)/)?.[1] : undefined;
+    const embed =
+      options.embeds?.[href] ??
+      options.embeds?.[url.href] ??
+      (statusId
+        ? Object.entries(options.embeds ?? {}).find(([key]) =>
+            new URL(key).pathname.endsWith(`/status/${statusId}`),
+          )?.[1]
+        : undefined);
     if (embed) {
       paragraph.replaceWith(embed);
       return;
     }
-    const metadata = options.metadata?.[href] ?? options.metadata?.[url.href];
+    const snapshot = options.metadata?.[href] ?? options.metadata?.[url.href];
+    const metadata = (options.slug && snapshot?.articles?.[options.slug]) || snapshot;
     if (!metadata?.title) return;
     const cardUrl = new URL(metadata.url ?? href, siteUrl);
     const link = $('<a></a>').attr(
@@ -263,7 +330,11 @@ export function blogMarkdown(options: MarkdownOptions = {}): Plugin[] {
       transform(code, id) {
         if (!/\.md(?:\?|$)/.test(id) || !code.includes('__html:')) return;
         return {
-          code: transformReactModule(code, { ...options, footnotes: footnotes.get(id) }),
+          code: transformReactModule(code, {
+            ...options,
+            slug: id.match(/\/pages\/posts\/([^/]+)\/index\.md(?:\?|$)/)?.[1],
+            footnotes: footnotes.get(id),
+          }),
           map: null,
         };
       },

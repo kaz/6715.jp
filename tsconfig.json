@@ -7,10 +7,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": [
-      "void/env",
-      "node"
-    ],
+    "types": ["void/env", "node"],
     "jsx": "react-jsx"
   },
   "include": [

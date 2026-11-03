@@ -2,8 +2,8 @@
   "https://engineering.mercari.com/blog/entry/phisical-server-setup/": {
     "type": "external",
     "url": "https://engineering.mercari.com/blog/entry/phisical-server-setup/",
-    "publisher": "メルカリのエンジニア情報ポータルサイトメルカリのエンジニア情報ポータルサイト",
-    "title": "物理サーバのセットアップをon-the-fly ISO patchingで自動化した話 | メルカリエンジニアリング",
+    "publisher": "メルカリエンジニアリング",
+    "title": "物理サーバのセットアップをon-the-fly ISO patchingで自動化した話",
     "tags": [
       "mercari",
       "自動化",
@@ -68,7 +68,7 @@
   "https://trap.jp/post/422/": {
     "type": "external",
     "url": "https://trap.jp/post/422/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "2018年の夏は #ツイキャスインターンチャレンジ",
     "tags": [
       "traP",
@@ -79,7 +79,7 @@
   "https://trap.jp/post/306/": {
     "type": "external",
     "url": "https://trap.jp/post/306/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "ICTトラブルシューティングコンテスト #ICTSC9 に参加した話",
     "tags": [
       "traP",
@@ -92,7 +92,7 @@
   "https://trap.jp/post/334/": {
     "type": "external",
     "url": "https://trap.jp/post/334/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "PrometheusでConoHa APIからメトリクスを取得してみる",
     "tags": [
       "traP",
@@ -107,7 +107,7 @@
   "https://trap.jp/post/200/": {
     "type": "external",
     "url": "https://trap.jp/post/200/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "VolgaCTF 2017 Quals に出た話【新歓ブログリレー2017 11日目】",
     "tags": [
       "traP",
@@ -119,7 +119,7 @@
   "https://trap.jp/post/167/": {
     "type": "external",
     "url": "https://trap.jp/post/167/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "サイバーコロッセオ×SECCON 2016に出ました",
     "tags": [
       "traP",
@@ -131,7 +131,7 @@
   "https://trap.jp/post/158/": {
     "type": "external",
     "url": "https://trap.jp/post/158/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "署名付きクッキー / Omniauth Strategyを書く / GitLabで独自認証",
     "tags": [
       "traP",
@@ -144,7 +144,7 @@
   "https://trap.jp/post/78/": {
     "type": "external",
     "url": "https://trap.jp/post/78/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "TWCTF 2016 writeup",
     "tags": [
       "traP",
@@ -157,7 +157,7 @@
   "https://trap.jp/post/53/": {
     "type": "external",
     "url": "https://trap.jp/post/53/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "ハッカソン参加記 - GitLove -",
     "tags": [
       "traP",
@@ -169,7 +169,7 @@
   "https://trap.jp/post/39/": {
     "type": "external",
     "url": "https://trap.jp/post/39/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "ConoHaでArchLinuxを動かすまで",
     "tags": [
       "traP",
@@ -181,7 +181,7 @@
   "https://trap.jp/post/30/": {
     "type": "external",
     "url": "https://trap.jp/post/30/",
-    "publisher": "東京科学大学デジタル創作同好会traP",
+    "publisher": "東京工業大学デジタル創作同好会traP",
     "title": "ボクは女の子になった (Live2D / clmtrackr)",
     "tags": [
       "traP",

@@ -74,8 +74,27 @@ test('footnotes and back references point to existing static fragments', async (
       .filter((href) => !document.getElementById(decodeURIComponent(href.slice(1)))),
   );
   expect(missing).toEqual([]);
+  await expect(page.locator('#fnref-goaway-2')).toHaveText('6');
   await page.goto('/posts/19/');
   await expect(page.locator('.article-content :is(del, s)').first()).toBeVisible();
+});
+
+test('legacy cards, tweet fallbacks, and intact TeX survive static generation', async ({
+  page,
+}) => {
+  await page.goto('/posts/5/');
+  const annotations = await page.locator('.math-inline annotation').allTextContents();
+  expect(annotations).toContain('\\mathbf{x}_{k+1}');
+  await expect(page.locator('.math-inline em')).toHaveCount(0);
+  await page.goto('/posts/11/');
+  await expect(page.locator('article aside')).toHaveCount(4);
+  await page.goto('/posts/4/');
+  await expect(page.locator('article blockquote.twitter-tweet')).toHaveCount(10);
+  await page.goto('/posts/15/');
+  await expect(page.locator('article blockquote.twitter-tweet')).toHaveCount(3);
+  await page.goto('/posts/30/');
+  await expect(page.locator('pre code.hljs')).toHaveCount(3);
+  await expect(page.locator('pre code .hljs-keyword').first()).toHaveText('select');
 });
 
 for (const viewport of [

@@ -30,10 +30,10 @@ bun run test:e2e    # JavaScript無効のブラウザーで静的サイトを確
 
 ## Markdown と見た目
 
-Markdown の実際のコンパイルは `@void/md` が担当します。`build/markdown.ts` はその前後で、KaTeX 数式、従来の脚注アンカー・リンクカード・外部リンク属性を補い、ドキュメント用のコピーボタン等を除去します。GFM の表・打ち消し、脚注、生 HTML、Shiki の構文強調を使用できます。数式の補完処理はコードフェンス・インラインコードを対象にしません。
+Markdown の実際のコンパイルは `@void/md` が担当します。`build/markdown.ts` はその前後で、KaTeX 数式、従来の脚注アンカー・リンクカード・外部リンク属性を補い、ドキュメント用のコピーボタン等を除去します。GFM の表・打ち消し、脚注、生 HTML を使用できます。コードの色付けと数式は公開済みサイトと同じ Highlight.js 10.5 / KaTeX 0.12 を使用します。既存の言語指定がないコードの判定は `data/code-languages.json` に本文のハッシュで保存し、新しいコードは自動判定します。数式は Markdown に再解釈されないよう一時的に保護し、HTML の生成後に展開します。
 
 Tailwind v4 は `src/styles.css` から使用しています。旧サイトが依存していたブラウザー標準の見出し・リスト・余白を維持するため preflight を導入せず、800px の本文幅、768px の切替幅、文字・余白・共有ボタンを従来に合わせています。
 
-通常のビルドは外部サイトに接続しません。15件の外部記事情報と、以前に取得できていたリンクカードの情報は `data/external.json` と `data/link-metadata.json` に保存しています。外部記事を追加する際は YAML に `title`、`date`、`publisher` を指定するかスナップショットを追加してください。カード情報がないリンクは通常のリンクとして表示します。Twitter 埋め込みは `bun run content:refresh-embeds` で公式 oEmbed から `data/embeds.json` を更新できます（ネットワークが必要）。取得失敗時は既存の成功済みキャッシュを保持し、未取得分は従来どおりリンクで表示します。サイト名・プロフィールは `src/components/blog.tsx`、head と計測設定は `void.config.ts` / `src/lib/head.ts` にあります。
+通常のビルドは外部サイトに接続しません。旧サイトの15件の外部記事情報と45か所の外部リンクカードは `data/external.json` と `data/link-metadata.json` に保存しています。同じURLでも記事によって取得時の内容が異なるカードは `articles` フィールドで保持します。外部記事を追加する際は YAML に `title`、`date`、`publisher` を指定するかスナップショットを追加してください。カード情報がないリンクは通常のリンクとして表示します。46件の Twitter 埋め込みも復元済みです。`bun run content:refresh-embeds` で公式 oEmbed から `data/embeds.json` を更新できます（ネットワークが必要）。取得失敗時は既存の成功済みキャッシュを保持し、未取得分はリンクで表示します。サイト名・プロフィールは `src/components/blog.tsx`、head と計測設定は `void.config.ts` / `src/lib/head.ts` にあります。
 
 記事の更新日時は Git の最終変更日時を使用します。CI 等では履歴を含むチェックアウト（`fetch-depth: 0`）を使用してください。

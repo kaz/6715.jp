@@ -40,7 +40,7 @@ describe('Markdown compatibility around @void/md', () => {
     );
     expect(html).toContain('href="#fn-goaway"');
     expect(html).toContain('id="fnref-goaway-2"');
-    expect(html).toContain('href="#fnref-goaway-2"');
+    expect(html).not.toContain('href="#fnref-goaway-2"');
     expect(html).toContain('<div class="footnotes"><hr><ol>');
     expect(html).not.toContain('[2]');
   });
@@ -50,14 +50,46 @@ describe('Markdown compatibility around @void/md', () => {
       '<h2 id="title"><a class="header-anchor" aria-hidden="true" href="#title">#</a> Title</h2><p><span style="font-size:1.5em"><strong>†単純†</strong></span><s>outdated</s></p><div class="language-html"><button class="copy"></button><span class="lang">html</span><pre style="background-color:#fff;color:#123"><code><span>&lt;script&gt;alert(1)&lt;/script&gt;</span></code></pre></div><script>window.__voidMdCopy=1</script>',
     );
     expect(html).toContain('<span style="font-size:1.5em"><strong>†単純†</strong></span>');
-    expect(html).toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
-    expect(html).toContain('class="language-html"');
+    expect(load(html)('pre code').text()).toBe('<script>alert(1)</script>');
+    expect(load(html)('pre code').hasClass('language-html')).toBe(true);
     expect(html).not.toContain('header-anchor');
     expect(html).not.toContain('button');
     expect(html).not.toContain('__voidMdCopy');
-    expect(html).not.toContain('background-color');
+    expect(html).not.toContain('style="background-color');
     expect(html).toContain('<h2 id="title">Title</h2>');
     expect(html).toContain('<del>outdated</del>');
+  });
+
+  it('keeps TeX subscripts and braces opaque until HTML emission', () => {
+    const { markdown } = transformMarkdown('$\\mathbf{x}_{k+1}$ and $\\mathbf{x}_k$.');
+    const html = transformHtml(markdown);
+    const $ = load(html);
+    expect(
+      $('annotation')
+        .map((_, e) => $(e).text())
+        .toArray(),
+    ).toEqual(['\\mathbf{x}_{k+1}', '\\mathbf{x}_k']);
+    expect($('.math-inline em, .math-inline strong')).toHaveLength(0);
+    expect(html).not.toContain('data-blog-math');
+  });
+
+  it('ends unmarked quote and list continuations without changing code', () => {
+    const source = '>PASS\nREJECTED\n\n- first\n- last\nOutside\n\n```\n>literal\ncode\n```\n';
+    const { markdown } = transformMarkdown(source);
+    expect(markdown).toContain('>PASS\n\nREJECTED');
+    expect(markdown).toContain('- last\n\nOutside');
+    expect(markdown).toContain('```\n>literal\ncode\n```');
+  });
+
+  it('restores legacy syntax colors, including auto-detected SQL', () => {
+    const html = transformHtml(
+      '<pre class="shiki" style="color:#123"><code><span>select * from `isu_condition` where `jia_isu_uuid` = ? order by `timestamp`\n</span></code></pre>',
+    );
+    const $ = load(html);
+    expect($('pre').attr('class')).toBeUndefined();
+    expect($('code').hasClass('hljs')).toBe(true);
+    expect($('.hljs-keyword').first().text()).toBe('select');
+    expect($('code').text()).toContain('where `jia_isu_uuid` = ?');
   });
 
   it('makes cards only from standalone links with known metadata', () => {

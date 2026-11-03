@@ -3,6 +3,7 @@
 @layer theme, base, components, utilities;
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
+@import 'highlight.js/styles/github.css' layer(base);
 
 @font-face {
   font-family: 'Exo 2';
@@ -34,7 +35,7 @@
     font-size: 1.4rem;
     font-weight: 300;
     font-style: italic;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Exo 2';
   }
   .site-header h1 a {
     color: white;
@@ -235,10 +236,10 @@
     color: gray;
     border-left: 0.5em solid gainsboro;
   }
-  .article-content blockquote > :first-child {
+  .article-content blockquote :first-child {
     margin-top: 0;
   }
-  .article-content blockquote > :last-child {
+  .article-content blockquote :last-child {
     margin-bottom: 0;
   }
   .article-content li {
@@ -297,26 +298,8 @@
     quotes: none;
     margin-top: 0.8em;
   }
-  .article-content .math-display,
-  .article-content .katex-display {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-
-  /* @void/md uses Shiki. Keep its syntax tokens while matching the original
-     unframed code blocks, without editor controls or line-number gutters. */
-  .article-content .shiki {
-    background-color: whitesmoke !important;
-  }
-  .article-content .shiki code {
-    color: #24292e;
-    background-color: whitesmoke;
-  }
-  .article-content .shiki .line {
-    min-height: 1em;
-  }
-  .article-content .shiki [data-line]::before {
-    display: none;
+  .article-content .math-display {
+    overflow: auto;
   }
   .article-content div[class*='language-'] {
     margin: 0;
@@ -343,11 +326,6 @@
   }
   .article-content .footnotes h2.sr-only {
     display: none;
-  }
-  /* markdown-it retains a paragraph around each footnote; the previous
-     renderer emitted the same text directly inside the list item. */
-  .article-content .footnote-item > p {
-    margin: 0;
   }
 
   @media screen and (max-width: 768px) {
