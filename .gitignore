@@ -12,5 +12,6 @@ pages/posts/*/
 pages/posts/.generated.json
 src/generated/
 public/sitemap.xml
+public/ogp/
 playwright-report/
 test-results/

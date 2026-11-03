@@ -36,4 +36,6 @@ Tailwind v4 は `src/styles.css` から使用しています。旧サイトが�
 
 通常のビルドは外部サイトに接続しません。旧サイトの15件の外部記事情報と45か所の外部リンクカードは `data/external.json` と `data/link-metadata.json` に保存しています。同じURLでも記事によって取得時の内容が異なるカードは `articles` フィールドで保持します。外部記事を追加する際は YAML に `title`、`date`、`publisher` を指定するかスナップショットを追加してください。カード情報がないリンクは通常のリンクとして表示します。46件の Twitter 埋め込みも復元済みです。`bun run content:refresh-embeds` で公式 oEmbed から `data/embeds.json` を更新できます（ネットワークが必要）。取得失敗時は既存の成功済みキャッシュを保持し、未取得分はリンクで表示します。サイト名・プロフィールは `src/components/blog.tsx`、head と計測設定は `void.config.ts` / `src/lib/head.ts` にあります。
 
+記事の OGP 画像は `build/ogp/` が satori + resvg でタイトルから `public/ogp/<slug>.png` に生成します（フロントマターに `image` があればそちらを使用）。デザインは `build/ogp/image.tsx` にあります。フォントは npm パッケージの TTF、アイコンは `build/ogp/avatar.jpg` を使い、ネットワークには接続しません。入力が変わらない画像は再生成しません。
+
 記事の更新日時は Git の最終変更日時を使用します。CI 等では履歴を含むチェックアウト（`fetch-depth: 0`）を使用してください。
