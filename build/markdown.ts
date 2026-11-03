@@ -14,6 +14,7 @@ export type LinkMetadata = {
   title?: string;
   description?: string;
   image?: string;
+  logo?: string;
   url?: string;
   articles?: Record<string, LinkMetadata>;
 };
@@ -277,7 +278,10 @@ export function transformHtml(
     details.append($('<strong></strong>').text(metadata.title));
     if (metadata.description)
       details.append($('<q></q>').attr('cite', cardUrl.href).text(metadata.description));
-    details.append($('<cite></cite>').text(cardUrl.hostname));
+    const cite = $('<cite></cite>').text(cardUrl.hostname);
+    const logo = resource(metadata.logo);
+    if (logo) cite.prepend($('<img>').attr({ src: logo, alt: '', loading: 'lazy' }));
+    details.append(cite);
     link.append(details);
     const image = resource(metadata.image);
     if (image) link.append($('<img>').attr({ src: image, alt: '', loading: 'lazy' }));

@@ -101,6 +101,7 @@ describe('Markdown compatibility around @void/md', () => {
             title: 'First <post>',
             description: 'A & B',
             image: '1.png',
+            logo: 'javascript:alert(1)',
           },
         },
       },
@@ -109,6 +110,7 @@ describe('Markdown compatibility around @void/md', () => {
     expect(html).toContain('<strong>First &lt;post&gt;</strong>');
     expect(html).toContain('<q cite="https://6715.jp/posts/1/">A &amp; B</q>');
     expect(load(html)('aside a > img').attr('src')).toBe('https://6715.jp/posts/1/1.png');
+    expect(load(html)('aside cite').html()).toBe('6715.jp');
     expect(html).toContain(
       '<p>Inline <a href="https://example.com/" target="_blank" rel="noopener noreferrer">',
     );

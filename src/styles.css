@@ -322,6 +322,11 @@
     font-style: normal;
     font-size: 0.75rem;
   }
+  .article-content aside cite img {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
   .article-content aside a > img {
     flex: none;
     height: 100%;
