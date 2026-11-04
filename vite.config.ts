@@ -4,6 +4,7 @@ import { voidReact } from '@void/react/plugin';
 import { voidMarkdown } from '@void/md/plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { contentPlugin, prepareContent } from './build/content';
+import { trailingSlashDev } from './build/dev';
 import { blogMarkdown } from './build/markdown';
 import { generateOgpImages } from './build/ogp';
 import embeds from './data/embeds.json';
@@ -16,6 +17,7 @@ export default defineConfig(async () => {
   return {
     plugins: content
       ? [
+          trailingSlashDev(),
           voidPlugin(),
           contentPlugin(),
           voidReact(),
