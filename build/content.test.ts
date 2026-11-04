@@ -75,12 +75,20 @@ describe('source content generation', () => {
     await expect(prepareContent(root)).rejects.toThrow('hand-edited');
   });
 
-  it('generates escaped canonical URLs and uses source dates without Git history', async () => {
+  it('generates escaped canonical URLs and uses the frontmatter date as the update date', async () => {
     const content = await buildSiteContent(await fixture());
     expect(content.articles[0].updated).toBe('2024-01-02T00:00:00.000Z');
     expect(content.articles[0].image).toBe('https://6715.jp/posts/1/preview.png');
     expect(sitemap(content)).toContain('https://6715.jp/tags/C%2B%2B%20%26%20Web/');
     expect(sitemap(content)).toContain('<lastmod>2024-01-02T00:00:00.000Z</lastmod>');
+  });
+
+  it('requires a publication date in the frontmatter', async () => {
+    const root = await fixture();
+    await writeFile(path.join(root, 'articles/2.md'), '---\ntitle: Undated\n---\n\nBody.\n');
+    await expect(buildSiteContent(root)).rejects.toThrow(
+      'Missing publication date in articles/2.md',
+    );
   });
 
   it('reports missing external metadata instead of silently dropping entries', async () => {

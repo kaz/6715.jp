@@ -1,8 +1,6 @@
-import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { promisify } from 'node:util';
 import matter from 'gray-matter';
 import yaml from 'js-yaml';
 import { unified } from 'unified';
@@ -12,7 +10,6 @@ import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
 import type { Plugin } from 'vite-plus';
 
-const exec = promisify(execFile);
 export const SITE_URL = 'https://6715.jp';
 const AVATAR = 'https://res.cloudinary.com/narusejun/image/twitter_name/h_128/sekai67.jpg';
 
@@ -108,17 +105,6 @@ async function readJson<T>(filename: string, fallback: T): Promise<T> {
   }
 }
 
-async function gitUpdated(root: string, filename: string, fallback: string): Promise<string> {
-  try {
-    const { stdout } = await exec('git', ['log', '-1', '--format=%aI', '--', filename], {
-      cwd: root,
-    });
-    return stdout.trim() ? isoDate(stdout.trim(), `${filename} commit date`) : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
 /** Read the source content and checked-in metadata snapshots. Ordinary builds never fetch the network. */
 export async function buildSiteContent(root = process.cwd()): Promise<SiteContent> {
   const articleDir = path.join(root, 'articles');
@@ -130,9 +116,7 @@ export async function buildSiteContent(root = process.cwd()): Promise<SiteConten
       const { data, content: body } = matter(raw);
       if (!data.date) throw new Error(`Missing publication date in articles/${filename}`);
       const date = isoDate(data.date, `${filename} date`);
-      const updated = data.updated
-        ? isoDate(data.updated, `${filename} updated`)
-        : await gitUpdated(root, `articles/${filename}`, date);
+      const updated = data.updated ? isoDate(data.updated, `${filename} updated`) : date;
       return {
         type: 'article',
         slug,
