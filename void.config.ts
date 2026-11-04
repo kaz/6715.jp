@@ -3,7 +3,14 @@ import { defineConfig } from 'void/config';
 
 export default defineConfig({
   output: 'static',
-  cloudflare: { name: '6715-jp' },
+  cloudflare: {
+    name: '6715-jp',
+    // Void refuses to deploy over traffic settings it did not record, so state
+    // them here. Preview URLs let Void check a version before activating it.
+    routes: [{ pattern: '6715.jp', custom_domain: true }],
+    workers_dev: false,
+    preview_urls: true,
+  },
   assets: { notFound: '404-page' },
   head: {
     htmlAttrs: { lang: 'ja' },
