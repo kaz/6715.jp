@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { useFrontmatter } from '@void/md';
 import { ArticleHeader, SocialShare } from '../../src/components/blog';
 import content from '../../src/lib/content';
+import NativeShare from '../../src/components/NativeShare' with { island: 'idle' };
 
 export default function PostLayout({ children }: { children: ReactNode }) {
   const frontmatter = useFrontmatter();
@@ -12,9 +13,13 @@ export default function PostLayout({ children }: { children: ReactNode }) {
   return (
     <main className="page-container">
       <ArticleHeader article={article} />
-      <SocialShare title={title} url={url} />
+      <SocialShare title={title} url={url}>
+        <NativeShare title={title} url={url} />
+      </SocialShare>
       <article className="article-content">{children}</article>
-      <SocialShare title={title} url={url} />
+      <SocialShare title={title} url={url}>
+        <NativeShare title={title} url={url} />
+      </SocialShare>
     </main>
   );
 }
