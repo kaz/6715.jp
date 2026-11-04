@@ -2,6 +2,7 @@ node_modules/
 dist/
 .void/
 .wrangler/
+.cloudflare/
 .void-wrangler.jsonc
 .env
 .env.*

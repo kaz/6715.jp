@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
-import yaml from 'js-yaml';
+import { load as loadYaml } from 'js-yaml';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
@@ -145,7 +145,7 @@ export async function buildSiteContent(root = process.cwd()): Promise<SiteConten
   }
   const externals = await Promise.all(
     externalFiles.map(async (filename): Promise<External> => {
-      const value = yaml.load(await readFile(path.join(externalDir, filename), 'utf8'));
+      const value = loadYaml(await readFile(path.join(externalDir, filename), 'utf8'));
       if (!value || typeof value !== 'object')
         throw new Error(`Invalid external article ${filename}`);
       const attrs = value as Record<string, unknown>;
