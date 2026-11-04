@@ -96,6 +96,21 @@ function TagIcon({ size = 16 }: { size?: 16 | 24 }) {
   );
 }
 
+function ExternalLinkIcon() {
+  return (
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      className="external-link-icon"
+      aria-hidden="true"
+    >
+      <path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.751.751 0 01-1.042-.018.751.751 0 01-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z" />
+    </svg>
+  );
+}
+
 export function Header() {
   return (
     <header className="site-header page-container">
@@ -159,7 +174,10 @@ export function Entries({ entries }: { entries: Entry[] }) {
           ) : (
             <a rel="noopener noreferrer" target="_blank" href={entry.url}>
               {entry.title}
-              <small>Published in {entry.publisher}</small>
+              <small>
+                {entry.publisher}
+                <ExternalLinkIcon />
+              </small>
             </a>
           )}
         </li>
