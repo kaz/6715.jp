@@ -267,36 +267,72 @@
     margin: 1.6em 0;
   }
   .article-content aside a {
-    display: inline-flex;
-    min-width: 60%;
-    border: 1px solid gainsboro;
-    border-radius: 0.2em;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left center;
+    display: flex;
+    height: 8.5rem;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background-color: white;
     color: inherit;
+    transition:
+      background-color 0.15s,
+      border-color 0.15s;
   }
   .article-content aside a:hover {
     text-decoration: none;
+    background-color: #f9fafb;
+    border-color: #d1d5db;
   }
   .article-content aside a div {
-    width: 100%;
-    padding: 1.6em 2em;
-    background: linear-gradient(to right, #fff0, #ffff 30%);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 0;
+    padding: 1rem 1.25rem;
   }
   .article-content aside a div > * {
-    display: block;
-    margin-left: 25%;
+    flex: none;
   }
-  .article-content aside cite {
-    color: lightslategray;
-    font-style: normal;
-    font-size: 0.8em;
+  .article-content aside strong,
+  .article-content aside q {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .article-content aside strong {
+    -webkit-line-clamp: 2;
+    font-size: 1rem;
+    line-height: 1.45;
   }
   .article-content aside q {
-    color: gray;
+    -webkit-line-clamp: 1;
+    color: #6b7280;
+    font-size: 0.8rem;
+    line-height: 1.5;
     quotes: none;
-    margin-top: 0.8em;
+  }
+  .article-content aside cite {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.15rem;
+    color: #374151;
+    font-style: normal;
+    font-size: 0.75rem;
+  }
+  .article-content aside cite img {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  .article-content aside a > img {
+    flex: none;
+    height: 100%;
+    aspect-ratio: 1.91 / 1;
+    object-fit: cover;
+    border-left: 1px solid #f0f0f0;
   }
   .article-content .math-display {
     overflow: auto;
@@ -346,6 +382,21 @@
     }
     .article-meta > div > div:first-child::after {
       display: none;
+    }
+    .article-content aside a {
+      height: 6.25rem;
+    }
+    .article-content aside a div {
+      padding: 0.75rem 1rem;
+    }
+    .article-content aside strong {
+      font-size: 0.9rem;
+    }
+    .article-content aside q {
+      display: none;
+    }
+    .article-content aside a > img {
+      aspect-ratio: 4 / 3;
     }
   }
 }

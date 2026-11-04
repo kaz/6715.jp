@@ -14,6 +14,7 @@ export type LinkMetadata = {
   title?: string;
   description?: string;
   image?: string;
+  logo?: string;
   url?: string;
   articles?: Record<string, LinkMetadata>;
 };
@@ -268,20 +269,22 @@ export function transformHtml(
         ? cardUrl.pathname + cardUrl.search + cardUrl.hash
         : cardUrl.href,
     );
-    if (metadata.image) {
-      const image = new URL(metadata.image, cardUrl);
-      if (/^https?:$/.test(image.protocol))
-        link.attr('style', `background-image:url(${JSON.stringify(image.href)})`);
-    }
+    const resource = (value?: string) => {
+      if (!value) return;
+      const resolved = new URL(value, cardUrl);
+      return /^https?:$/.test(resolved.protocol) ? resolved.href : undefined;
+    };
     const details = $('<div></div>');
     details.append($('<strong></strong>').text(metadata.title));
-    details.append($('<cite></cite>').text(cardUrl.hostname));
-    details.append(
-      $('<q></q>')
-        .attr('cite', cardUrl.href)
-        .text(metadata.description ?? ''),
-    );
+    if (metadata.description)
+      details.append($('<q></q>').attr('cite', cardUrl.href).text(metadata.description));
+    const cite = $('<cite></cite>').text(cardUrl.hostname);
+    const logo = resource(metadata.logo);
+    if (logo) cite.prepend($('<img>').attr({ src: logo, alt: '', loading: 'lazy' }));
+    details.append(cite);
     link.append(details);
+    const image = resource(metadata.image);
+    if (image) link.append($('<img>').attr({ src: image, alt: '', loading: 'lazy' }));
     paragraph.replaceWith($('<aside></aside>').append(link));
   });
 

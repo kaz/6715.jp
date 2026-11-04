@@ -44,6 +44,7 @@ export interface Metadata {
   title?: string;
   description?: string;
   image?: string;
+  logo?: string;
   publisher?: string;
   date?: string;
   url: string;
@@ -199,6 +200,7 @@ export async function buildSiteContent(root = process.cwd()): Promise<SiteConten
       date: article.date,
       description: article.description,
       image: article.image ?? AVATAR,
+      logo: AVATAR,
     };
   }
   return { articles, externals, entries, tags: allTags, metadata };
