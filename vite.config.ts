@@ -9,17 +9,21 @@ import { generateOgpImages } from './build/ogp';
 import embeds from './data/embeds.json';
 
 export default defineConfig(async () => {
-  const content = await prepareContent();
-  await generateOgpImages(content.articles);
+  // Unit tests import build/ directly. Void's Cloudflare plugin would run them
+  // inside workerd, so they get no app plugins.
+  const content = process.env.VITEST ? undefined : await prepareContent();
+  if (content) await generateOgpImages(content.articles);
   return {
-    plugins: [
-      voidPlugin(),
-      contentPlugin(),
-      voidReact(),
-      ...blogMarkdown({ metadata: content.metadata, embeds }),
-      voidMarkdown({ shiki: { themes: { light: 'github-light', dark: 'github-light' } } }),
-      tailwindcss(),
-    ],
+    plugins: content
+      ? [
+          voidPlugin(),
+          contentPlugin(),
+          voidReact(),
+          ...blogMarkdown({ metadata: content.metadata, embeds }),
+          voidMarkdown({ shiki: { themes: { light: 'github-light', dark: 'github-light' } } }),
+          tailwindcss(),
+        ]
+      : [],
     test: { include: ['build/**/*.test.ts'] },
     fmt: {
       singleQuote: true,

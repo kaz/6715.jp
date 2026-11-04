@@ -2,8 +2,8 @@
 import { defineConfig } from 'void/config';
 
 export default defineConfig({
-  target: 'node',
   output: 'static',
+  cloudflare: { name: '6715-jp' },
   assets: { notFound: '404-page' },
   head: {
     htmlAttrs: { lang: 'ja' },
