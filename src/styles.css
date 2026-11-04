@@ -83,7 +83,7 @@
   }
 
   .author-profile {
-    @apply flex;
+    @apply flex items-center;
     margin: 4em 0;
   }
   .author-profile > img {
@@ -96,6 +96,7 @@
     margin: 0;
   }
   .author-profile small {
+    display: block;
     color: gray;
   }
   .author-profile strong {
@@ -108,6 +109,10 @@
     margin-left: 9px;
     width: 18px;
     height: 18px;
+    color: #3c4043;
+  }
+  .author-profile strong a:hover {
+    color: royalblue;
   }
   .copyright {
     color: gray;
