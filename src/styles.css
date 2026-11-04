@@ -114,6 +114,13 @@
   .author-profile strong a:hover {
     color: royalblue;
   }
+  .author-profile strong span {
+    display: flex;
+  }
+  .author-profile strong svg {
+    width: 18px;
+    height: 18px;
+  }
   .copyright {
     color: gray;
     text-align: right;
