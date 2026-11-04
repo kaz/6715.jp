@@ -2,6 +2,7 @@ import type { HeadDescriptor } from 'void';
 
 const origin = 'https://6715.jp';
 const avatar = 'https://res.cloudinary.com/narusejun/image/twitter_name/h_128/sekai67.jpg';
+const twitterAccount = '@sekai67';
 
 export function pageHead(
   title: string,
@@ -13,6 +14,11 @@ export function pageHead(
     meta: [
       { name: 'description', content: description },
       { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:site', content: twitterAccount },
+      { name: 'twitter:creator', content: twitterAccount },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: avatar },
       { property: 'og:title', content: title },
       { property: 'og:type', content: 'website' },
       { property: 'og:image', content: avatar },
@@ -41,12 +47,23 @@ export function articleHead(article: {
   descriptor.meta = descriptor.meta?.filter(
     (meta) =>
       !('property' in meta && ['og:type', 'og:image'].includes(meta.property ?? '')) &&
-      !('name' in meta && meta.name === 'twitter:card'),
+      !('name' in meta && ['twitter:card', 'twitter:image'].includes(meta.name ?? '')),
   );
   descriptor.meta?.push(
     { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:image', content: image },
+    { name: 'twitter:image:alt', content: article.title },
     { property: 'og:type', content: 'article' },
     { property: 'og:image', content: image },
+    { property: 'og:image:alt', content: article.title },
+    // The size is only known for generated cards; it lets the first share render without a refetch.
+    ...(article.image
+      ? []
+      : [
+          { property: 'og:image:type', content: 'image/png' },
+          { property: 'og:image:width', content: '1200' },
+          { property: 'og:image:height', content: '630' },
+        ]),
     { property: 'article:published_time', content: article.date },
     { property: 'article:author', content: 'sekai' },
     ...article.tags.map((tag) => ({ property: 'article:tag', content: tag })),
