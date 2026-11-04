@@ -1,9 +1,6 @@
 import { load } from 'cheerio';
-import { createHash } from 'node:crypto';
 import matter from 'gray-matter';
 import katex from 'katex';
-import highlight from 'highlight.js';
-import codeLanguages from '../data/code-languages.json';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkParse from 'remark-parse';
@@ -78,15 +75,6 @@ export function transformMarkdown(
       });
       return;
     }
-    if (node.type === 'code' && node.lang === 'C' && start != null && end != null) {
-      const original = body.slice(start, end);
-      replacements.push({
-        start,
-        end,
-        value: original.replace(/^(`{3,}|~{3,})C(?=\s|$)/, '$1c'),
-      });
-      return;
-    }
     if (
       node.type === 'footnoteReference' &&
       node.identifier &&
@@ -152,35 +140,12 @@ export function transformHtml(
   $('script').each((_, element) => {
     if ($(element).text().includes('window.__voidMdCopy')) $(element).remove();
   });
-  $('div[class*="language-"]').each((_, element) => {
-    const wrapper = $(element);
-    const pre = wrapper.children('pre');
-    if (!pre.length) return;
-    const language = wrapper.attr('class')?.match(/(?:^|\s)language-([^\s]*)/)?.[1];
-    if (language) pre.children('code').addClass(`language-${language}`);
-    wrapper.replaceWith(pre);
-  });
-  $('pre code').each((_, element) => {
-    const code = $(element);
-    const text = code.text();
-    const declared = code.attr('class')?.match(/(?:^|\s)language-([^\s]+)/)?.[1];
-    // Retain the old detector's guesses for existing unlabelled snippets.
-    // New snippets still use automatic language detection.
-    const cached = (codeLanguages as Record<string, string>)[
-      createHash('sha256').update(text).digest('hex')
-    ];
-    const language = declared ?? cached;
-    const result =
-      language && highlight.getLanguage(language)
-        ? highlight.highlight(language, text, true)
-        : highlight.highlightAuto(text);
-    code
-      .html(result.value)
-      .attr(
-        'class',
-        `hljs${(language ?? result.language) ? ` language-${language ?? result.language}` : ''}`,
-      );
-    code.parent('pre').removeAttr('class').removeAttr('style').removeAttr('tabindex');
+  // Drop @void/md's language label and copy button around Shiki's <pre>.
+  // The site's stylesheet supplies the code block background.
+  $('div[class*="language-"] > pre').each((_, element) => {
+    const pre = $(element);
+    pre.removeAttr('style');
+    pre.parent().replaceWith(pre);
   });
 
   const footnotes = options.footnotes ?? [];

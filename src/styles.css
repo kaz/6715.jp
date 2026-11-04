@@ -3,7 +3,6 @@
 @layer theme, base, components, utilities;
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
-@import 'highlight.js/styles/github.css' layer(base);
 @import '@fontsource/exo-2/latin-300-italic.css';
 
 @layer base {

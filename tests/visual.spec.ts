@@ -93,8 +93,8 @@ test('legacy cards, tweet fallbacks, and intact TeX survive static generation', 
   await page.goto('/posts/15/');
   await expect(page.locator('article blockquote.twitter-tweet')).toHaveCount(3);
   await page.goto('/posts/30/');
-  await expect(page.locator('pre code.hljs')).toHaveCount(3);
-  await expect(page.locator('pre code .hljs-keyword').first()).toHaveText('select');
+  await expect(page.locator('pre.shiki code')).toHaveCount(3);
+  await expect(page.locator('pre.shiki code span[style]').first()).toHaveText('select');
 });
 
 for (const viewport of [

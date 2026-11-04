@@ -19,7 +19,7 @@ describe('Markdown compatibility around @void/md', () => {
 
   it('renders inline and display math while preserving code and frontmatter', () => {
     const source =
-      '---\ntitle: "$untouched$"\n---\n\nMath $x^2$ and `$code$`.\n\n$$\n\\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}\n$$\n\n```C\nprintf("$notmath$");\n```\n';
+      '---\ntitle: "$untouched$"\n---\n\nMath $x^2$ and `$code$`.\n\n$$\n\\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}\n$$\n\n```c\nprintf("$notmath$");\n```\n';
     const { markdown } = transformMarkdown(source);
     expect(markdown).toContain('title: "$untouched$"');
     expect(markdown).toContain('class="math math-inline"');
@@ -51,7 +51,6 @@ describe('Markdown compatibility around @void/md', () => {
     );
     expect(html).toContain('<span style="font-size:1.5em"><strong>†単純†</strong></span>');
     expect(load(html)('pre code').text()).toBe('<script>alert(1)</script>');
-    expect(load(html)('pre code').hasClass('language-html')).toBe(true);
     expect(html).not.toContain('header-anchor');
     expect(html).not.toContain('button');
     expect(html).not.toContain('__voidMdCopy');
@@ -81,15 +80,15 @@ describe('Markdown compatibility around @void/md', () => {
     expect(markdown).toContain('```\n>literal\ncode\n```');
   });
 
-  it('restores legacy syntax colors, including auto-detected SQL', () => {
+  it('keeps Shiki colors and drops the code block label and copy button', () => {
     const html = transformHtml(
-      '<pre class="shiki" style="color:#123"><code><span>select * from `isu_condition` where `jia_isu_uuid` = ? order by `timestamp`\n</span></code></pre>',
+      '<div class="language-sql"><button title="Copy Code" class="copy"></button><span class="lang">sql</span><pre class="shiki shiki-themes github-light github-light" style="background-color:#fff" tabindex="0"><code><span class="line"><span style="color:#D73A49">select</span><span> * from users</span></span></code></pre></div><script>window.__voidMdCopy=1</script>',
     );
     const $ = load(html);
-    expect($('pre').attr('class')).toBeUndefined();
-    expect($('code').hasClass('hljs')).toBe(true);
-    expect($('.hljs-keyword').first().text()).toBe('select');
-    expect($('code').text()).toContain('where `jia_isu_uuid` = ?');
+    expect($('div, button, span.lang, script')).toHaveLength(0);
+    expect($('pre').hasClass('shiki')).toBe(true);
+    expect($('pre').attr('style')).toBeUndefined();
+    expect($('code span[style]').first().text()).toBe('select');
   });
 
   it('makes cards only from standalone links with known metadata', () => {
