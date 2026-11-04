@@ -5,10 +5,12 @@ import { voidMarkdown } from '@void/md/plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { contentPlugin, prepareContent } from './build/content';
 import { blogMarkdown } from './build/markdown';
+import { generateOgpImages } from './build/ogp';
 import embeds from './data/embeds.json';
 
 export default defineConfig(async () => {
   const content = await prepareContent();
+  await generateOgpImages(content.articles);
   return {
     plugins: [
       voidPlugin(),

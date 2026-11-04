@@ -33,14 +33,18 @@ export function articleHead(article: {
 }): HeadDescriptor {
   const path = `/posts/${article.slug}/`;
   const descriptor = pageHead(`${article.title} | 6715.jp`, path, article.description);
-  const image = article.image ? new URL(article.image, new URL(path, origin)).href : avatar;
+  // Without an explicit image, use the title card rendered by build/ogp.
+  const image = new URL(
+    article.image ?? `/ogp/${encodeURIComponent(article.slug)}.png`,
+    new URL(path, origin),
+  ).href;
   descriptor.meta = descriptor.meta?.filter(
     (meta) =>
       !('property' in meta && ['og:type', 'og:image'].includes(meta.property ?? '')) &&
       !('name' in meta && meta.name === 'twitter:card'),
   );
   descriptor.meta?.push(
-    { name: 'twitter:card', content: article.image ? 'summary_large_image' : 'summary' },
+    { name: 'twitter:card', content: 'summary_large_image' },
     { property: 'og:type', content: 'article' },
     { property: 'og:image', content: image },
     { property: 'article:published_time', content: article.date },
