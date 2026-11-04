@@ -1,4 +1,10 @@
 import { expect, test } from '@playwright/test';
+import { readdirSync } from 'node:fs';
+
+const articleCount = readdirSync('articles').filter((name) => name.endsWith('.md')).length;
+const externalCount = readdirSync('articles/external').filter((name) =>
+  name.endsWith('.yml'),
+).length;
 
 // These pages must work from a static host, with no client JavaScript.
 test.use({ javaScriptEnabled: false });
@@ -19,9 +25,9 @@ test('homepage includes every article and external entry without JavaScript', as
   const response = await page.goto('/');
   expect(response?.status()).toBe(200);
   await expect(page).toHaveTitle('6715.jp');
-  await expect(page.locator('.entry-list > li')).toHaveCount(45);
-  await expect(page.locator('.entry-list a[href^="/posts/"]')).toHaveCount(30);
-  await expect(page.locator(".entry-list a[target='_blank']")).toHaveCount(15);
+  await expect(page.locator('.entry-list > li')).toHaveCount(articleCount + externalCount);
+  await expect(page.locator('.entry-list a[href^="/posts/"]')).toHaveCount(articleCount);
+  await expect(page.locator(".entry-list a[target='_blank']")).toHaveCount(externalCount);
   await expect(page.locator('header a')).toHaveText('6715.jp');
   await expect(page.locator('#profile')).toContainText('sekai');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://6715.jp/');
