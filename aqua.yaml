@@ -1,0 +1,6 @@
+registries:
+  - type: standard
+    ref: v4.581.1
+packages:
+  - name: oven-sh/bun@bun-v1.4.4
+  - name: nodejs/node@v26.13.0
