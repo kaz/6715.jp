@@ -30,10 +30,12 @@ describe('source content generation', () => {
   it('preserves the full existing article and external-entry inventory offline', async () => {
     const content = await buildSiteContent();
     expect(content.articles).toHaveLength(30);
-    expect(content.externals).toHaveLength(15);
-    expect(content.entries).toHaveLength(45);
-    expect(content.tags).toHaveLength(76);
-    expect(content.entries[0].title).toBe('ISUCON11予選に参加した');
+    expect(content.externals).toHaveLength(16);
+    expect(content.entries).toHaveLength(46);
+    expect(content.tags).toHaveLength(79);
+    expect(content.entries[0].title).toBe(
+      '論理レプリケーションと postgres_fdw を組み合わせてカラムタイプを無停止で変換する',
+    );
     expect(content.metadata['https://trap.jp/author/kaz/'].title).toContain('kaz');
     expect(content.metadata['https://github.com/kaz/kiritan-server'].url).toBe(
       'https://github.com/kaz/kiritan-voice',
